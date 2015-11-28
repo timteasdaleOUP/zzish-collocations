@@ -29,14 +29,13 @@ block content
     }
 
   script.
-    var showWordChoices = function(event) {
+    var showWordChoices = function() {
       var s = document.getElementById("choices").style
       if (s.display === "inline") {
         s.display = "none";
       } else {
         s.display = "inline";
       }
-      event.stopPropagation()
     }
 
   h1 Multiple choice quiz
@@ -52,9 +51,11 @@ block content
     p Select the right answer
     div(class='question')
       span #{test.beginning}
-      button(type='button', onclick="showWordChoices(event)", id='showChoicesButton') ...
+      button(type='button', onclick="showWordChoices()", id='showChoicesButton') ...
       div(id='choices', class='wordChoiceBox')
         each choice in test.choices
           input(type='submit', name='answer', class='choiceButton', value=choice)
       span #{test.end}
       input(type='hidden', name='testId', value=test.id)
+      input(type='hidden', name='baseWord', value=test.baseWord)
+      input(type='hidden', name='collocationReversed', value=test.collocationReversed ? "true" : "false")

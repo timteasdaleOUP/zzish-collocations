@@ -20,20 +20,16 @@ router.get('/game/:topic/:area', function(req, res, next) {
   res.render('game', { title: req.params.topic + " " + req.params.area + " games page", topic: req.params.topic, area: req.params.area });
 });
 
-var getSentence = function(topic, area) {
+var loadSentences = function(topic, area) {
   var basePath = "../data/" + topic + "/";
   var dataFile = basePath + area  + ".json";
   console.log("Loading data file " + dataFile);
   var json = require(dataFile);
 
-  var sentences = json.sentences;
-  var length = sentences.length;
-  var selectedSentenceIndex = Math.floor(Math.random() * length);
+  return json.sentences;
+}
 
-  var sentence = sentences[selectedSentenceIndex];
-  console.log("Selected sentence index: " + selectedSentenceIndex);
-  console.log("Sentence (id:" + sentence.id + "): " + sentence.beginning + " ??? " + sentence.end);
-
+var loadSentenceChoices = function(topic, sentence) {
   // Load the choices that match the sentence
   // sentence is something like:
   // {
@@ -44,10 +40,24 @@ var getSentence = function(topic, area) {
   //    "group": "places",
   //    "tags": ["gamingVenue"]
   //  }
+  var basePath = "../data/" + topic + "/";
   choiceFile = basePath + sentence.choices.group + ".json";
   console.log("Loading choices from " + choiceFile);
   var choices = require(choiceFile).items;
   console.log("choiceFile loaded with " + choices.length + " elements");
+  return choices;
+}
+
+var getSentence = function(topic, area) {
+  var sentences = loadSentences(topic, area);
+  var length = sentences.length;
+  var selectedSentenceIndex = Math.floor(Math.random() * length);
+
+  var sentence = sentences[selectedSentenceIndex];
+  console.log("Selected sentence index: " + selectedSentenceIndex);
+  console.log("Sentence (id:" + sentence.id + "): " + sentence.beginning + " ??? " + sentence.end);
+
+  var choices = loadSentenceChoices(topic, sentence);
   var selectedChoiceIndex = Math.floor(Math.random() * choices.length)
   var chosenPair = choices[selectedChoiceIndex]
   console.log("Selected pair: " + chosenPair.q + "," + chosenPair.a)
@@ -121,24 +131,63 @@ var getSentence = function(topic, area) {
   // }
 
   return {
+    id: sentence.id,
     beginning: beginning,
     end: end,
+    baseWord: base,
+    collocationReversed: hideFirstWord,
     choices: choices
   };
 }
 
-var runMultipleChoiceGame = function(topic, area, req, res, isPost) {
-  var sentence = getSentence(topic, area);
+var checkAnswer = function(topic, area, testId, collocationReversed, baseWord, answer) {
+  var sentences = loadSentences(topic, area);
+  var match = null;
+  for (var i = 0; i<sentences.length; i++) {
+    if (sentences[i].id == testId) {
+      match = sentences[i];
+      break;
+    }
+  }
 
-    var gameType = 'mc'
-    var success = null
+  if (match === null){
+    console.log("Failed to find test for topic " + topic + ", area " + area + ", id " + testId);
+    return false;
+  }
+
+  var collocation = collocationReversed ? (answer + ' ' + baseWord) :  (baseWord + ' ' + answer) ;
+  var choices = loadSentenceChoices(topic, match);
+  // Look for the collocation in the sentence's word list
+  console.log("Looking for collocation " + collocation);
+  for (var i = 0; i < choices.length; i++) {
+    var choice = choices[i];
+    var choiceCollocation = choice.q + ' ' + choice.a;
+    console.log("Testing choice collocation " + choiceCollocation);
+    if (choiceCollocation === collocation) {
+      console.log("Answer is correct with collocation " + collocation);
+      return true;
+    }
+  }
+  console.log("Answer is not correct with collocation " + collocation);
+  return false;
+}
+
+var runMultipleChoiceGame = function(topic, area, req, res, isPost) {
+    var gameType = 'mc';
+    var success = null;
     if (isPost){
       var answer = req.body.answer;
       var testId = req.body.testId;
+      var collocationReversed = req.body.collocationReversed === "true";
+      var baseWord = req.body.baseWord;
       console.log("Received input: " + answer)
       console.log("Received input: " + testId)
-      success = (answer === 'court')
+      console.log("Received input: " + collocationReversed)
+      console.log("Received input: " + baseWord)
+      success = checkAnswer(topic, area, testId, collocationReversed, baseWord, answer)
     }
+
+    var sentence = getSentence(topic, area);
     res.render(gameType, {
        title: req.params.topic + " " + req.params.area + " games page from custom page",
        topic: req.params.topic,
@@ -151,8 +200,9 @@ var runMultipleChoiceGame = function(topic, area, req, res, isPost) {
 router.get('/game/:topic/:area/mc', function(req, res, next) {
     runMultipleChoiceGame(req.params.topic, req.params.area, req, res, false);
 });
+
 router.post('/game/:topic/:area/mc', function(req, res, next) {
-    runMultipleChoiceGame(req, res, true);
+  runMultipleChoiceGame(req.params.topic, req.params.area, req, res, true);
 });
 
 router.get('/game/:topic/:area/:gameType', function(req, res, next) {
