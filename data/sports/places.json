@@ -1,22 +1,25 @@
-{"Sports places":
-[
-{"q":"athletic","a":"circuit"},
-{"q":"badminton","a":"court"},
-{"q":"baseball","a":"field"},
-{"q":"bowling","a":"alley"},
-{"q":"boxing","a":"ring"},
-{"q":"cricket","a":"pitch"},
-{"q":"football","a":"field"},
-{"q":"football","a":"pitch"},
-{"q":"golf","a":"course"},
-{"q":"hockey","a":"field"},
-{"q":"ice","a":"rink"},
-{"q":"obstacle","a":"course"},
-{"q":"rugby","a":"field"},
-{"q":"rugby","a":"pitch"},
-{"q":"skating","a":"rink"},
-{"q":"sports","a":"field"},
-{"q":"squash","a":"court"},
-{"q":"tennis","a":"court"},
-{"q":"wrestling","a":"ring"}
-]}
+{
+  "description": "Sports places",
+  "items":
+  [
+    {"q":"athletic","a":"circuit"},
+    {"q":"badminton","a":"court", "tags": ["gamingVenue"]},
+    {"q":"baseball","a":"field", "tags": ["gamingVenue"]},
+    {"q":"bowling","a":"alley", "tags": ["gamingVenue"]},
+    {"q":"boxing","a":"ring"},
+    {"q":"cricket","a":"pitch", "tags": ["gamingVenue"]},
+    {"q":"football","a":"field", "tags": ["gamingVenue"]},
+    {"q":"football","a":"pitch", "tags": ["gamingVenue"]},
+    {"q":"golf","a":"course", "tags": ["gamingVenue"]},
+    {"q":"hockey","a":"field", "tags": ["gamingVenue"]},
+    {"q":"ice","a":"rink"},
+    {"q":"obstacle","a":"course" },
+    {"q":"rugby","a":"field", "tags": ["gamingVenue"]},
+    {"q":"rugby","a":"pitch", "tags": ["gamingVenue"]},
+    {"q":"skating","a":"rink", "tags": ["gamingVenue"]},
+    {"q":"sports","a":"field", "tags": ["gamingVenue"]},
+    {"q":"squash","a":"court", "tags": ["gamingVenue"]},
+    {"q":"tennis","a":"court", "tags": ["gamingVenue"]},
+    {"q":"wrestling","a":"ring"}
+  ]
+}

@@ -1,13 +1,29 @@
 {
-    data: [
-        {
-            base: 'Go',
-            words: ['riding', 'jogging', 'fishing']
-        },
-        
-        {
-            base: 'Do',
-            words: ['aerobics', 'judo']
+    "sentences": [
+      {
+        "id": 1,
+        "beginning": "Today I met Henry on the",
+        "end": "for a friendly game.",
+        "choices": {
+          "group": "places",
+          "tags": ["gamingVenue"]
         }
-        ]
+      },
+      {
+        "id": 2,
+        "beginning": "I forgot to bring my",
+        "end": "last night!",
+        "choices": {
+          "group": "things"
+        }
+      },
+      {
+        "id": 3,
+        "beginning": "I'm meeting Joe at the",
+        "end": "at 5 o'clock.",
+        "choices": {
+          "group": "places"
+        }
+      }
+    ]
 }
