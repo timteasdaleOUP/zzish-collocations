@@ -1,6 +1,33 @@
 extends layout
 
 block content
+  style(type='text/css').
+    .wordChoiceBox {
+      display: inline;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+
+    .stateText{
+      font-size: 30pt;
+    }
+
   h1 Multiple choice quizz
   h2 Topic: #{topic} - Area: #{area}
-  p Select the right answer
+
+  if (success != null)
+    if success
+      p(class='stateText') Well done!
+    else
+     p(class='stateText') Sorry, try again!
+
+  form(action='',method='post')
+    p Select the right answer
+    div
+      span #{test.beginning}
+      select(class='wordChoiceBox', name='answer')
+        option court
+        option pitch
+      span #{test.end}
+      input(type='hidden', name='testId', value=test.id)
+    input(type='submit',value='Submit',data-transition='fade')
