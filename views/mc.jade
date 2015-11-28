@@ -7,18 +7,36 @@ block content
     }
     .wordChoiceBox {
       font-size: 18pt;
-      display: inline;
+      display: none;
       margin-left: 4px;
       margin-right: 4px;
     }
+    #showChoicesButton {
+      height: 25px;
+      width: 50px;
+      margin: 5px;
+      margin-bottom: 7px;
+      vertical-align: middle;
+    }
     .choiceButton {
-      display: inline;
+      display: flow;
       font-size: 18pt;
       margin-left: 4px;
       margin-right: 4px;
     }
     .stateText{
       font-size: 30pt;
+    }
+
+  script.
+    var showWordChoices = function(event) {
+      var s = document.getElementById("choices").style
+      if (s.display === "inline") {
+        s.display = "none";
+      } else {
+        s.display = "inline";
+      }
+      event.stopPropagation()
     }
 
   h1 Multiple choice quizz
@@ -34,6 +52,7 @@ block content
     p Select the right answer
     div(class='question')
       span #{test.beginning}
+      button(type='button', onclick="showWordChoices(event)", id='showChoicesButton') ...
       div(id='choices', class='wordChoiceBox')
         each choice in test.choices
           input(type='submit', name='answer', class='choiceButton', value=choice)
