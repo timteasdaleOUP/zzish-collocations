@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.topic-button {
+	color: white;
+	font-size: 20pt;
+	background-color: green;
+	float:left;
+	margin: 20px;
+	padding: 8px;
+}
+
+.topic-button  a {
+	color: white;
+	
+}
