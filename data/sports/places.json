@@ -1,0 +1,22 @@
+{"Sports places":
+[
+{"q":"athletic","a":"circuit"},
+{"q":"badminton","a":"court"},
+{"q":"baseball","a":"field"},
+{"q":"bowling","a":"alley"},
+{"q":"boxing","a":"ring"},
+{"q":"cricket","a":"pitch"},
+{"q":"football","a":"field"},
+{"q":"football","a":"pitch"},
+{"q":"golf","a":"course"},
+{"q":"hockey","a":"field"},
+{"q":"ice","a":"rink"},
+{"q":"obstacle","a":"course"},
+{"q":"rugby","a":"field"},
+{"q":"rugby","a":"pitch"},
+{"q":"skating","a":"rink"},
+{"q":"sports","a":"field"},
+{"q":"squash","a":"court"},
+{"q":"tennis","a":"court"},
+{"q":"wrestling","a":"ring"}
+]}
