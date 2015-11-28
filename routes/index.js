@@ -6,6 +6,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Collocations game' });
 });
 
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: 'Collocations game' });
+});
+
+
 router.get('/domain/:topic', function(req, res, next) {
   res.render('domain', { title: req.params.topic + " page", topic: req.params.topic });
 });

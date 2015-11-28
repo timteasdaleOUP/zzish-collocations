@@ -4,6 +4,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+footer {
+	clear:both;
+}
+
 a {
   color: #00B7FF;
 }
@@ -11,7 +15,7 @@ a {
 .topic-button {
 	color: white;
 	font-size: 20px;
-	background-color: purple;
+	background-color: #9DBE00;
 	float:left;
 	min-width:100px;
 	margin: 20px;
@@ -32,7 +36,7 @@ a {
 
 
 #header {
-	background-color: green;
+	background-color: #800080;
 	color:white;
 	padding:5px;
 }
@@ -41,6 +45,11 @@ a {
 	text-align:right;
 	display:inline-block;
 }
+
+#header-links a {
+color: white;
+	text-decoration: none;
+	}
 
 #header-links  ul {
 	list-style-type: none;

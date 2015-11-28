@@ -5,7 +5,6 @@ use warnings;
 use Smart::Comments;
 use Carp;
 use autodie qw(:all); 
-use Data::Dumper;
 use JSON;
 main() unless (caller());
 
