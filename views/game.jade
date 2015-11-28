@@ -4,10 +4,10 @@ block content
   h1= title
   p Welcome to #{title}
   p Hello
-  
+
   h2 this is the topic: #{topic} area: #{area} game page
-  
+
   div
-  each area in ['places', 'equipment', 'people']
+  each gameType in ['DragnDrop', 'sentenceCompletion', 'multipleChoice']
     div(class="topic-button")
-        a(href="/game/#{topic}/#{area}") #{area}
+        a(href="/game/#{topic}/#{area}/#{gameType}") #{gameType}

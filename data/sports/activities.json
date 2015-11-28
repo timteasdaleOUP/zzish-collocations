@@ -1,0 +1,13 @@
+{
+    data: [
+        {
+            base: 'Go',
+            words: ['riding', 'jogging', 'fishing']
+        },
+        
+        {
+            base: 'Do',
+            words: ['aerobics', 'judo']
+        }
+        ]
+}

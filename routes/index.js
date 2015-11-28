@@ -12,7 +12,7 @@ router.get('/domain/:topic', function(req, res, next) {
 
 
 router.get('/game/:topic/:area', function(req, res, next) {
-  res.render('domain', { title: req.params.topic + " " + req.params.area + " games page", topic: req.params.topic, area: req.params.area });
+  res.render('game', { title: req.params.topic + " " + req.params.area + " games page", topic: req.params.topic, area: req.params.area });
 });
 
 router.post('/post', function(req, res, next) {
