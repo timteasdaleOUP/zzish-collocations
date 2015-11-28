@@ -2,12 +2,21 @@ extends layout
 
 block content
   style(type='text/css').
+    .question {
+      font-size: 18pt;
+    }
     .wordChoiceBox {
+      font-size: 18pt;
       display: inline;
       margin-left: 4px;
       margin-right: 4px;
     }
-
+    .choiceButton {
+      display: inline;
+      font-size: 18pt;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
     .stateText{
       font-size: 30pt;
     }
@@ -23,11 +32,10 @@ block content
 
   form(action='',method='post')
     p Select the right answer
-    div
+    div(class='question')
       span #{test.beginning}
-      select(class='wordChoiceBox', name='answer')
-        option court
-        option pitch
+      div(id='choices', class='wordChoiceBox')
+        each choice in test.choices
+          input(type='submit', name='answer', class='choiceButton', value=choice)
       span #{test.end}
       input(type='hidden', name='testId', value=test.id)
-    input(type='submit',value='Submit',data-transition='fade')
