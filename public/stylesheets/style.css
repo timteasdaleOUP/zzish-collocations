@@ -1,5 +1,6 @@
 body {
   padding: 50px;
+  padding-top:0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -12,7 +13,7 @@ a {
 	font-size: 20px;
 	background-color: purple;
 	float:left;
-	width:100px;
+	min-width:100px;
 	margin: 20px;
 	margin-left:0;
 	margin-right:30px;
@@ -27,4 +28,15 @@ a {
 	color: white;
 	text-decoration: none;
 	
+}
+
+
+#header {
+	background-color: green;
+	color:white;
+	padding:5px;
+}
+
+#main-logo {
+	padding-right:10px;
 }
