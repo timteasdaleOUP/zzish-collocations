@@ -37,6 +37,24 @@ a {
 	padding:5px;
 }
 
+#header-links {
+	text-align:right;
+	display:inline-block;
+}
+
+#header-links  ul {
+	list-style-type: none;
+	display:inline;
+}
+
+#header-links  li {
+	list-style-type: none;
+	display:inline;
+	float:left;
+	padding-left:20px;
+}
+
+
 #main-logo {
 	padding-right:10px;
 }
