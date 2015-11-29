@@ -6,14 +6,12 @@ block content
   h1 Hello clever clogs
   
   
-  - var s1 = {name: 'Drag And Drop', score: 50, maxscore:100};
-  - var s2 = {name: 'Complete a sentence', score: 90, maxscore:100};
-  - var s3 = {name: 'Multiple Choice', score: 10, maxscore:100};
+  - var scores = {"scoresInGames":[{"name": "Drag And Drop", "score": 50, "maxscore": 100},{"name": "Complete a sentence", "score": 90, "maxscore":100}, {"name": "Multiple Choice", "score": 10, "maxscore":100}]}
   - var userScore = 0
   - var userMaxScore = 0
 
   div
-  each gameType in [s1,s2,s3]
+  each gameType in scores.scoresInGames
       p Your progress in #{gameType.name} #[progress(value="#{gameType.score}" max="#{gameType.maxscore}")]
       - userScore = userScore + gameType.score
       - userMaxScore = userMaxScore + gameType.maxscore
