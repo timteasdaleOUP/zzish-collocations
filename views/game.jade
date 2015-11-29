@@ -3,9 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Hello
 
-  h2 this is the topic: #{topic} area: #{area} game page
+  h2 Topic: #[a(href="/domain/#{topic}") #{topic}] area: #{area} game page
 
   - var dd = {name: 'Drag And Drop', link: 'dd'};
   - var cs = {name: 'Complete a sentence', link: 'cs'};
