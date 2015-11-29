@@ -3,6 +3,17 @@ extends layout
 block content
   h1= title
   
+  h1 Hello clever clogs
+  
+  
+  - var s1 = {name: 'Drag And Drop', score: 50, maxscore:100};
+  - var s2 = {name: 'Complete a sentence', score: 90, maxscore:100};
+  - var s3 = {name: 'Multiple Choice', score: 10, maxscore:100};
+
   div
-  p Your progress #[progress max="100" value="70"]
+  each gameType in [s1,s2,s3]
+      p Your progress in #{gameType.name} #[progress(value="#{gameType.score}" max="#{gameType.maxscore}")]
+  
+
+
   
