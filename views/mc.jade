@@ -52,10 +52,10 @@ block content
   if (success != null)
     if success
       p(class='stateText correct') Well done!
-      p #{givenAnswer} is correct!
+      p Well done, #[strong.correct #{givenAnswer}] is correct!
     else
      p(class='stateText incorrect') Sorry, try again!
-     p #{givenAnswer} is not correct!
+     p Sorry, #[strong.incorrect #{givenAnswer}] is not correct!
 
   form(action='',method='post')
     p Select the right answer
