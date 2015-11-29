@@ -2,10 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  p Hello
+  p Welcome to #{productName}, where you can have fun learning to use collocations, words that are commonly used together.
+  h2 QuickStart
+  p Try a #[a(href="/game/sports/activities/mc") multiple choice question]  now, or explore the different topics below.
 
   div
+  h2 Topics available
   each topic in ['sports','health','travel','money']
     div(class="topic-button")
         a(href="/domain/#{topic}") #{topic}

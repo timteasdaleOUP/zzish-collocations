@@ -23,7 +23,7 @@ a {
 	margin-right:30px;
 	padding: 8px;
 	padding-bottom: 10px;
-	 border-radius: 9px;
+	 border-radius: 9px 0px;
 	 text-align:center;
 
 }
@@ -63,7 +63,14 @@ color: white;
 	padding-left:20px;
 }
 
+#siteTitle {
+	font-size: 20px;
+	color: white;
+}
 
 #main-logo {
-	padding-right:10px;
+	padding-right:10px; float:left;
+}
+#mainContent {
+clear:both;
 }
