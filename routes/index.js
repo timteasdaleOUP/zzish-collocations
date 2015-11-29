@@ -279,6 +279,10 @@ router.get('/game/:topic/:area/:gameType', function(req, res, next) {
   res.render(gameType, { title: req.params.topic + " " + req.params.area + " games page", topic: req.params.topic, area: req.params.area });
 });
 
+router.post('/game/:topic/:area/:gameType', function(req, res, next) {
+  var gameType = req.params.gameType
+  res.render(gameType, { title: req.params.topic + " " + req.params.area + " games page", topic: req.params.topic, area: req.params.area });
+});
 
 router.post('/post', function(req, res, next) {
   res.render('index', { title: 'Express' });

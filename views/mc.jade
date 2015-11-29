@@ -28,8 +28,6 @@ block content
       font-size: 30pt;
     }
     
-/* I moved .correct and .incorrect to main CSS - Tim  */
-
   script.
     var showWordChoices = function() {
       var s = document.getElementById("choices").style
@@ -52,7 +50,6 @@ block content
      p Sorry, #[strong.incorrect #{givenAnswer}] is not correct!
          
    form(action='',method='post')
-    p Select the right answer
     div(class='question')
       span #{test.beginning}
       button(type='button', onclick="showWordChoices()", id='showChoicesButton') ...

@@ -1,0 +1,103 @@
+extends layout
+
+block content
+  style(type='text/css').
+    .question {
+      font-size: 18pt;
+    }
+    .wordChoiceBox {
+      font-size: 18pt;
+      display: none;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+    #showChoicesButton {
+      height: 25px;
+      width: 50px;
+      margin: 5px;
+      margin-bottom: 7px;
+      vertical-align: middle;
+    }
+    .choiceButton {
+      display: flow;
+      font-size: 18pt;
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+    .stateText{
+      font-size: 30pt;
+    }
+    #draggingArea>div>ul>li {
+      list-style: none;
+    }
+    
+    .dropTarget{
+      font-size: 20pt;
+      margin: 5px;
+      border-style: solid;
+      background: #73AD21;
+      border-radius: 10;
+      text-align: left;
+    }
+    
+  script.
+    var showWordChoices = function() {
+      var s = document.getElementById("choices").style
+      if (s.display === "inline") {
+        s.display = "none";
+      } else {
+        s.display = "inline";
+      }
+    }
+    
+    function allowDrop(ev) {
+        //ev.preventDefault();
+    }
+    
+    function start_drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+        
+    function drag_handler(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+    
+  h1 Drag and drop game
+  h2 Topic: #{topic} - Area: #{area}
+
+  if (success != null)
+    if success
+      p(class='stateText correct') Well done!
+      p Well done, #[strong.correct #{givenAnswer}] is correct!
+    else
+     p(class='stateText incorrect') Sorry, try again!
+     p Sorry, #[strong.incorrect #{givenAnswer}] is not correct!
+
+   div(id='draggingArea')
+    div(id='target', ondrop="drop(event)", ondragover="allowDrop(event)")
+      ul
+        li(class='dropTarget') tennis
+        li(class='dropTarget') football
+        li(class='dropTarget') baseball
+        li(class='dropTarget') athletics
+    div(id='choices', style="{display:inline}")
+      ul
+        li
+          button(draggable="true", ondragstart="start_drag(event)", ondrag="drag_handler(event)") pitch
+        li
+          button(draggable="true", ondragstart="start_drag(event)", ondrag="drag_handler(event)") field
+        li
+          button(draggable="true", ondragstart="start_drag(event)", ondrag="drag_handler(event)") track
+        li
+          button(draggable="true", ondragstart="start_drag(event)", ondrag="drag_handler(event)")  court
+    
+   form(action='',method='post')
+    div(class='question')
+      button next
+      input(type='hidden', name='test', value=JSON.stringify(test))
