@@ -85,3 +85,11 @@ color: white;
 #mainContent {
 clear:both;
 }
+
+    .correct {
+    	color: green;
+    }
+    
+    .incorrect {
+    	color: red;
+    }
