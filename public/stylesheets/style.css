@@ -44,7 +44,9 @@ a {
 	text-decoration: none;
 	
 }
-
+.topic-button:hover{
+-webkit-filter: brightness(120%); 
+}
 
 #header {
 	background-color: #800080;
