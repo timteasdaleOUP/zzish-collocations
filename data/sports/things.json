@@ -4,6 +4,7 @@
   [
     {"q":"basket","a":"ball"},
     {"q":"baseball","a":"bat"},
+    {"q":"baseball","a":"ball"},
     {"q":"baseball","a":"glove"},
     {"q":"cricket","a":"bat"},
     {"q":"cricket","a":"ball"},
@@ -17,6 +18,7 @@
     {"q":"golf","a":"glove"},
     {"q":"boxing","a":"glove"},
     {"q":"ping-pong","a":"ball"},
-    {"q":"ping-pong","a":"racket"}
+    {"q":"ping-pong","a":"racket"},
+    {"q":"ping-pong","a":"bat"}
   ]
 }
