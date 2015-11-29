@@ -3,6 +3,7 @@
   "items":
   [
     {"q":"athletic","a":"circuit"},
+    {"q":"athletic","a":"field"},
     {"q":"badminton","a":"court", "tags": ["gamingVenue"]},
     {"q":"baseball","a":"field", "tags": ["gamingVenue"]},
     {"q":"bowling","a":"alley", "tags": ["gamingVenue"]},

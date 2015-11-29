@@ -2,18 +2,21 @@
   "description": "Sports equipment",
   "items":
   [
+    {"q":"basket","a":"ball"},
     {"q":"baseball","a":"bat"},
+    {"q":"baseball","a":"glove"},
     {"q":"cricket","a":"bat"},
     {"q":"cricket","a":"ball"},
+    {"q":"cricket","a":"glove"},
     {"q":"tennis","a":"racket"},
+    {"q":"tennis","a":"ball"},
     {"q":"bowling","a":"ball"},
-    {"q":"bowling","a":"pin"},
-    {"q":"baseball","a":"glove"},
-    {"q":"golf","a":"club"},
-    {"q":"boxing","a":"glove"},
+    {"q":"bowling","a":"glove"},
     {"q":"golf","a":"ball"},
-    {"q":"basket","a":"ball"},
+    {"q":"golf","a":"club"},
+    {"q":"golf","a":"glove"},
+    {"q":"boxing","a":"glove"},
     {"q":"ping-pong","a":"ball"},
-    {"q":"tennis","a":"ball"}
+    {"q":"ping-pong","a":"racket"}
   ]
 }
