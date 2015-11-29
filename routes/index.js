@@ -10,6 +10,10 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'Collocations game' });
 });
 
+router.get('/my_account', function(req, res, next) {
+  res.render('my_account', { title: 'Collocations game' });
+});
+
 
 router.get('/domain/:topic', function(req, res, next) {
   res.render('domain', { title: req.params.topic + " page", topic: req.params.topic });
