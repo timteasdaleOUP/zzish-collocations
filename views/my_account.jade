@@ -9,12 +9,17 @@ block content
   - var scores = {"scoresInGames":[{"name": "Drag And Drop", "score": 50, "maxscore": 100},{"name": "Complete a sentence", "score": 90, "maxscore":100}, {"name": "Multiple Choice", "score": 10, "maxscore":100}]}
   - var userScore = 0
   - var userMaxScore = 0
+  - var badScore = 30
+  - var averageScore = 60
+  - var goodScore = 89
 
   div
   each gameType in scores.scoresInGames
-      p Your progress in #{gameType.name} #[progress(value="#{gameType.score}" max="#{gameType.maxscore}")]
-      - userScore = userScore + gameType.score
-      - userMaxScore = userMaxScore + gameType.maxscore
+      - var thisPerc =  gameType.score /  gameType.maxscore
+      - if (thisPerc < badScore) { scoreColor = "redProg" } else if (thisPerc < averageScore) { scoreColor = "blueProg" } else {scoreColor = "greenProg" } 
+      p Your progress in #{gameType.name} #[progress(value="#{gameType.score}" max="#{gameType.maxscore}" class="#{scoreColor}")]
+      - userScore += gameType.score
+      - userMaxScore += gameType.maxscore
 
     h2 Totals:
       p Your overall progress  #[progress(value="#{userScore}" max="#{userMaxScore}")]
