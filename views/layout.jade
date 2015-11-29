@@ -1,5 +1,8 @@
 doctype html
 html
+- var companyName = 'Collo Kate Ltd';
+- var productName = 'Collo Kate Collocations extravaganza';
+- var copyrightYear = 2015
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -21,5 +24,5 @@ html
           li Log out 
           
     block content
-    footer Copyright &copy; 2015
+    footer #{productName} &copy; #{copyrightYear} #{companyName}
     
