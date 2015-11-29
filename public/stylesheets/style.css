@@ -2,10 +2,21 @@ body {
   padding: 50px;
   padding-top:0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+      z-index:1;
 }
 
 footer {
 	clear:both;
+	bottom:0;
+	  border-top:solid 1px #666;
+    bottom:0;
+    height:15px;
+    padding:5px;
+    position:fixed;
+    width:100%;
+    z-index:1000;
+    padding-bottom:5px;
+    background-color: white;
 }
 
 a {
