@@ -52,15 +52,63 @@ var loadSentenceChoices = function(topic, sentence) {
   return choices;
 }
 
-var getSentence = function(topic, area) {
+function find(array, predicate) {
+  for (var i = 0; i < array.length; i++) {
+    if (predicate(array[i])) {
+      return array[i];
+    }
+  }
+
+  return null;
+}
+
+function getFirstElements(array, count) {
+  if (array.length <= count) {
+    return array;
+  }
+
+  var results = [];
+  for(var i = 0; i < count; i++) {
+    results.push(array[i]);
+  }
+  return results;
+}
+
+function logArray(array){
+  for(var i = 0; i<array.length; i++){
+    console.log("  " + array[i]);
+  }
+}
+
+function getShuffledCopy(sourceArray) {
+  var array = sourceArray.slice(0);
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+var getRandomTest = function(topic, area) {
   var sentences = loadSentences(topic, area);
   var length = sentences.length;
-  var selectedSentenceIndex = Math.floor(Math.random() * length);
 
+  var selectedSentenceIndex = Math.floor(Math.random() * length);
   var sentence = sentences[selectedSentenceIndex];
-  console.log("Selected sentence index: " + selectedSentenceIndex);
   console.log("Sentence (id:" + sentence.id + "): " + sentence.beginning + " ??? " + sentence.end);
 
+  var chosenPair = null;
   var choices = loadSentenceChoices(topic, sentence);
   var selectedChoiceIndex = Math.floor(Math.random() * choices.length)
   var chosenPair = choices[selectedChoiceIndex]
@@ -81,7 +129,7 @@ var getSentence = function(topic, area) {
     base = chosenPair.a;
     selectChoice = function (c) { return c.q; };
     selectBase = function (c) { return c.a; };
-  } else{
+  } else {
     beginning += ' ' + chosenPair.q;
     answer = chosenPair.a;
     base = chosenPair.q;
@@ -134,17 +182,25 @@ var getSentence = function(topic, area) {
   //   console.log("alternative: " + alternatives[i].q + " " + alternatives[i].a);
   // }
 
+  console.log("before");
+  logArray(choices);
+  console.log("after");
+  logArray(getFirstElements(choices, 4));
+
   return {
     id: sentence.id,
     beginning: beginning,
     end: end,
     baseWord: base,
     collocationReversed: hideFirstWord,
-    choices: choices
+    choices: getFirstElements(choices, 4)
   };
 }
 
-var checkAnswer = function(topic, area, testId, collocationReversed, baseWord, answer) {
+var checkAnswer = function(topic, area, test, answer) {
+  console.log("Checking answer " + answer + " against " + test.choices[0]);
+  return test.choices[0] === answer;
+
   var sentences = loadSentences(topic, area);
   var match = null;
   for (var i = 0; i<sentences.length; i++) {
@@ -179,24 +235,32 @@ var checkAnswer = function(topic, area, testId, collocationReversed, baseWord, a
 var runMultipleChoiceGame = function(topic, area, req, res, isPost) {
     var gameType = 'mc';
     var success = null;
+    var test = null;
     if (isPost){
       var answer = req.body.answer;
-      var testId = req.body.testId;
-      var collocationReversed = req.body.collocationReversed === "true";
-      var baseWord = req.body.baseWord;
-      console.log("Received input: " + answer)
-      console.log("Received input: " + testId)
-      console.log("Received input: " + collocationReversed)
-      console.log("Received input: " + baseWord)
-      success = checkAnswer(topic, area, testId, collocationReversed, baseWord, answer)
+      var postedTest = JSON.parse(req.body.test);
+      console.log("Received answer: " + answer);
+      console.log("Received input test: " + JSON.stringify(postedTest));
+      success = checkAnswer(topic, area, postedTest, answer);
+      if (!success) {
+        // reissue the same question
+        test = postedTest;
+      }
     }
 
-    var sentence = getSentence(topic, area);
+    if (test === null) {
+      test = getRandomTest(topic, area);
+    }
+
+    console.log("Sending test with the following choices:");
+    logArray(test.choices);
+
     res.render(gameType, {
        title: req.params.topic + " " + req.params.area + " games page from custom page",
        topic: req.params.topic,
        area: req.params.area,
-       test: sentence,
+       test: test,
+       shuffledChoices: getShuffledCopy(test.choices),
        success: success,
        givenAnswer: answer
      });

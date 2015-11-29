@@ -56,16 +56,14 @@ block content
     else
      p(class='stateText incorrect') Sorry, try again!
      p Sorry, #[strong.incorrect #{givenAnswer}] is not correct!
-
-  form(action='',method='post')
+         
+   form(action='',method='post')
     p Select the right answer
     div(class='question')
       span #{test.beginning}
       button(type='button', onclick="showWordChoices()", id='showChoicesButton') ...
       div(id='choices', class='wordChoiceBox')
-        each choice in test.choices
+        each choice in shuffledChoices
           input(type='submit', name='answer', class='choiceButton', value=choice)
       span #{test.end}
-      input(type='hidden', name='testId', value=test.id)
-      input(type='hidden', name='baseWord', value=test.baseWord)
-      input(type='hidden', name='collocationReversed', value=test.collocationReversed ? "true" : "false")
+      input(type='hidden', name='test', value=JSON.stringify(test))
