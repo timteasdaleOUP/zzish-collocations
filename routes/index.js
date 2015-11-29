@@ -193,7 +193,8 @@ var runMultipleChoiceGame = function(topic, area, req, res, isPost) {
        topic: req.params.topic,
        area: req.params.area,
        test: sentence,
-       success: success
+       success: success,
+       givenAnswer: answer
      });
 };
 
