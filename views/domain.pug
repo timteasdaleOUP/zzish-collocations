@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+
+    h2 Topic: #{topic}
+
+    div
+    each area in ['places', 'equipment', 'activities']
+        div(class="topic-button")
+            a(href="/game/#{topic}/#{area}") #{area}

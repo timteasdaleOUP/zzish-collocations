@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    p The computer (<span class="correct">crashed</span>/<span style="text-decoration:line-through" class="incorrect">broke</span>/<span style="text-decoration:line-through" class="incorrect">problemed</span>)!
+    h1= message
+    h2= error.status
+    pre #{error.stack}

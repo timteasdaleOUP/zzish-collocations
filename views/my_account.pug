@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1= title
+
+    h1 Hello Kate
+
+
+    - var scores = {"scoresInGames":[{"name": "Sports", "score": 50, "maxscore": 100},{"name": "Health", "score": 90, "maxscore":100}, {"name": "Travel", "score": 10, "maxscore":100}, {"name": "Money", "score": 70, "maxscore":100}]}
+    - var userScore = 0
+    - var userMaxScore = 0
+
+    div
+    each gameType in scores.scoresInGames
+        p Your progress in #{gameType.name} #[progress(value="#{gameType.score}" max="#{gameType.maxscore}")]
+        - userScore = userScore + gameType.score
+        - userMaxScore = userMaxScore + gameType.maxscore
+
+    h2 Totals:
+        p Your overall progress  #[progress(value="#{userScore}" max="#{userMaxScore}")]
+
+
+
+
+
